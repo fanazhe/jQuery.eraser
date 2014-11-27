@@ -82,8 +82,8 @@
                 completeFunction = (options && options.completeFunction) ? options.completeFunction : null,
                 progressFunction = (options && options.progressFunction) ? options.progressFunction : null,
                 fillStyle = (options && options.fillColor) ? options.fillColor : null,
-                drawPositionX = (options && options.drawPositionX) ? options.drawPositionX : 0,
-                drawPositionY = (options && options.drawPositionY) ? options.drawPositionY : 0,
+                drawPositionX = ((options && options.drawPositionX) ? options.drawPositionX : 0) * scaleRatio,
+                drawPositionY = ((options && options.drawPositionY) ? options.drawPositionY : 0) * scaleRatio,
                 zIndex = $this.css('z-index') == "auto"?1:$this.css('z-index'),
                 parts = [],
                 colParts = Math.floor(width / size),
@@ -103,7 +103,7 @@
               ctx.fillStyle = fillStyle;
               ctx.fillRect(0, 0, width, height);
             }
-            ctx.drawImage(that, drawPositionX, drawPositionY);
+            ctx.drawImage(that, drawPositionX, drawPositionY, that.width * scaleRatio, that.height * scaleRatio);
             $this.remove();
 
             // prepare context for drawing operations
